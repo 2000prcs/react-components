@@ -4,14 +4,13 @@ class App extends React.Component {
         return(
             <div>GroceryList
                 <h2>Mo's GroceryList</h2>
-                <GroceryList item={['Cucumbers', 'Kale']}/>
+                <GroceryList items={['Cucumbers', 'Kale']}/>
             </div>
         );
     }
 }
 
-
-class GroceryList extends React.Component {
+class GroceryListItem extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -31,8 +30,29 @@ class GroceryList extends React.Component {
         }
         return(
             <ul>
-                <li style={style} onMouseOver={this.onListItemMouseOver.bind(this)}>{this.props.item[0]}</li>
-                <li>{this.props.item[1]}</li>
+                <li style={style} onMouseOver={this.onListItemMouseOver.bind(this)}>{this.props.item}</li>
+            </ul>
+        );
+    }
+
+
+}
+
+
+class GroceryList extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            over: false
+        }
+    }
+
+    render(){
+        return(
+            <ul>
+                {this.props.items.map(item =>
+                    <GroceryListItem item ={item}/>
+                )}
             </ul>
         );
     }
@@ -42,57 +62,4 @@ ReactDOM.render(
     <App />, 
     document.getElementById('app')
 );
-
-// class Rice extends React.Component {
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             over: false
-//         }
-//     }
-
-//     onListItemMouseOver(){
-//         this.setState({
-//             over: !this.state.over
-//         });
-//     }
-
-//     render(){
-//         var style = {
-//             fontWeight: this.state.over? 'bold' : 'normal'
-//         }
-//         return(
-//             <li style={style} onMouseOver={this.onListItemMouseOver.bind(this)}>{this.props.item}</li>
-//         );
-//     }
-// }
-
-// class Milk extends React.Component {
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             over: false
-//         }
-//     }
-
-//     onListItemMouseOver(){
-//         this.setState({
-//             over: !this.state.over
-//         });
-//     }
-
-//     render(){
-//         var style = {
-//             fontWeight: this.state.over? 'bold' : 'normal'
-//         }
-
-//         return(
-//             <li style={style} onMouseOver={this.onListItemMouseOver.bind(this)}>{this.props.item}</li>
-//         );
-//     }
-// }
-
-
-
-
 
